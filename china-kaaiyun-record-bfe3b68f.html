@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开云 · 从容关注，再次遇见</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f2f5;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e1e2a;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .page {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* hero 横幅 —— 浅淡氛围，不张扬 */
+        .hero {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 3.5rem 2.2rem;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03), 0 2px 0 0 #e8eaee inset;
+            border: 1px solid #e4e8ed;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            transition: box-shadow 0.25s;
+        }
+
+        .hero:hover {
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.04), 0 2px 0 0 #dfe2e7 inset;
+        }
+
+        .hero h1 {
+            font-weight: 450;
+            font-size: 2.1rem;
+            letter-spacing: 2px;
+            color: #242736;
+            margin-bottom: 0.9rem;
+        }
+
+        .hero .subhead {
+            font-size: 1.05rem;
+            color: #4f5462;
+            max-width: 540px;
+            margin: 0.3rem auto 0;
+            border-top: 1px solid #eef0f4;
+            padding-top: 1.2rem;
+            font-weight: 350;
+        }
+
+        /* 卡片区块 — 柔和阴影 + 细边框 */
+        .card-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 1.8rem 2rem;
+            border: 1px solid #e2e6ec;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .card h2 {
+            font-size: 1.35rem;
+            font-weight: 420;
+            color: #2b2d3b;
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .card h2::before {
+            content: "·";
+            font-weight: 300;
+            color: #8695a8;
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        .card p {
+            margin-bottom: 0.8rem;
+            color: #323544;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card a {
+            color: #28646e;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .card a:hover {
+            border-bottom-color: #28646e;
+            color: #0b333c;
+        }
+
+        .muted-badge {
+            display: inline-block;
+            background: #f2f5f8;
+            border-radius: 40px;
+            padding: 0.2rem 1rem;
+            font-size: 0.8rem;
+            color: #48505e;
+            letter-spacing: 0.3px;
+            margin-right: 0.4rem;
+        }
+
+        /* 页尾访问提示 —— 收藏感 */
+        .footer-note {
+            margin-top: 1.8rem;
+            padding: 1.5rem 2.2rem;
+            background: #ffffff;
+            border-radius: 60px 60px 28px 28px;
+            border: 1px solid #e0e4ea;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.8rem 1.6rem;
+            text-align: left;
+        }
+
+        .footer-note .note-text {
+            font-size: 0.97rem;
+            color: #2e3546;
+        }
+
+        .footer-note .note-text a {
+            color: #1c5b64;
+            text-decoration: none;
+            border-bottom: 1px solid #bfd0d6;
+            font-weight: 450;
+            padding-bottom: 1px;
+        }
+
+        .footer-note .note-text a:hover {
+            border-bottom-color: #1c5b64;
+        }
+
+        .bookmark-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #edf1f5;
+            padding: 0.35rem 1.1rem 0.35rem 1.2rem;
+            border-radius: 40px;
+            color: #2f3b48;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .bookmark-icon span {
+            font-size: 1.15rem;
+            line-height: 1;
+            opacity: 0.7;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.9rem;
+            }
+            .hero {
+                padding: 2.2rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .card {
+                padding: 1.5rem 1.4rem;
+            }
+            .footer-note {
+                flex-direction: column;
+                align-items: flex-start;
+                border-radius: 32px;
+                padding: 1.3rem 1.4rem;
+            }
+            .bookmark-icon {
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero .subhead {
+                font-size: 0.95rem;
+            }
+            .card h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* 极简分离线 */
+        .soft-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #dfe3e9, transparent);
+            margin: 1.2rem 0 1.8rem;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 首页横幅 hero -->
+    <div class="hero">
+        <h1>开云 · 一方从容的角落</h1>
+        <div class="subhead">
+            再次访问，往往源于印象里的宁静与踏实。<br>
+            不必刻意，只需记得。
+        </div>
+    </div>
+
+    <!-- 三段自然的介绍（背景 + 持续关注 + 收藏感） -->
+    <div class="card-section">
+
+        <div class="card">
+            <h2>从一次浏览开始</h2>
+            <p>
+                许多时候，我们来到一个地方，最初只是因为一个简单的念头——想了解关于<a href="https://china-kaaiyun.com">开云</a>的轮廓与气质。
+                它没有喧嚣的宣告，只有循序渐进的呈现。没有浮夸的承诺，而是用内容本身说话。
+            </p>
+            <p>
+                这里的背景里有一种安静的秩序：信息被仔细整理，层次自然展开。即使只是随手翻看，也不会觉得繁杂。
+                这种体验，让人愿意多停留一会儿。
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>再次访问的理由</h2>
+            <p>
+                对于已经来过的人而言，再次打开页面，并不一定因为某个强烈目的，而是因为这里值得回看。
+                就像一本杂志，你记得其中几篇文章的气息，隔段时间再翻阅，依然有收获。
+            </p>
+            <p>
+                <span class="muted-badge">📎 收藏夹</span>
+                <span class="muted-badge">📖 反复读</span>
+                从资讯到观点，从场景到细节，每一部分都保持着稳定的质感。
+                把<a href="https://china-kaaiyun.com">开云</a>放在书签里，不是为了时刻关注，而是知道它一直在那里，干净、清晰。
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>持续关注，不紧不慢</h2>
+            <p>
+                一个网站如果能让人偶尔想起，并愿意回来看一看，就已经很珍贵了。
+                这里没有推送的紧迫感，也没有“必须知道”的压力。更新与变化，都像朋友之间的自然叙旧。
+            </p>
+            <p>
+                保持关注的方式也很简单：把<a href="https://china-kaaiyun.com">开云</a>放入浏览器收藏夹，
+                或只是记在心里——下次想找一个舒适的信息环境时，自然会回来。
+                不急，不噪，刚刚好。
+            </p>
+        </div>
+    </div>
+
+    <hr class="soft-divider">
+
+    <!-- 页尾访问提示（收藏 / 再次访问） -->
+    <div class="footer-note">
+        <div class="note-text">
+            <span>🌱 如果你想再次找到这里，不妨把 </span>
+            <a href="https://china-kaaiyun.com">开云</a>
+            <span> 保存为书签，或记住这个名字。</span>
+        </div>
+        <div class="bookmark-icon">
+            <span>🔖</span> 随时回来
+        </div>
+    </div>
+
+    <!-- 极简引用式说明，不喧宾夺主 -->
+    <div style="margin-top: 1.6rem; text-align: center; font-size: 0.78rem; color: #818a96; border-top: 1px solid #e6eaf0; padding-top: 1.2rem; letter-spacing: 0.3px;">
+        · 杂志式节奏 · 再次阅读，总有新感受
+    </div>
+
+</div>
+</body>
+</html>
